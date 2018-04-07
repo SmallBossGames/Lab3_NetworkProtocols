@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="JSONArrayCollection.cs" />
+    <Compile Include="JSONBool.cs" />
     <Compile Include="JSONCollection.cs" />
     <Compile Include="JSONNumber.cs" />
     <Compile Include="JSONObject.cs" />

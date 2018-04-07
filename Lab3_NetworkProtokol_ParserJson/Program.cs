@@ -21,6 +21,7 @@ namespace Lab3_NetworkProtokol_ParserJson
                 {
                     new JSONNumber("Я ебал твою тёлку", 1488),
                     new JSONString("Я роняю запад", "УУУУУУ"),
+                    new JSONBool("Делаю, что я хочу", "null"),
                     new JSONArrayCollection("Это правда")
                     {
                         new JSONString(string.Empty, "Я ебал жену обамы"),
@@ -32,9 +33,16 @@ namespace Lab3_NetworkProtokol_ParserJson
 
             Console.WriteLine(jsonObject);
 
+            //Достанем 1488 для проверки
             var newObj = new JSONParser.JSONParser();
 
-            var parseData = newObj.Parse(jsonObject.ToString());
+            var parseData = newObj.Parse(jsonObject.ToString()) as JSONObjectCollection;
+
+            var parseZalupa = parseData["zalupa"] as JSONObjectCollection;
+
+            var parseNumber = (parseZalupa["Я ебал твою тёлку"] as JSONNumber).Value;
+
+            Console.WriteLine(parseNumber);
 
             Console.ReadKey();
         }

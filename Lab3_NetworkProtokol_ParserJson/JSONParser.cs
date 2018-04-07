@@ -42,6 +42,12 @@ namespace JSONParser
             if (Char.IsDigit(CurrentChar) || CurrentChar == '-')
                 return ParseNumber();
 
+            if (CurrentChar == 't' || CurrentChar == 'f' || CurrentChar == 'n')
+                return ParseBool();
+
+            if (CurrentChar == 'T' || CurrentChar == 'F' || CurrentChar == 'N')
+                return ParseBool();
+
             throw new FormatException();
         }
 
@@ -71,6 +77,28 @@ namespace JSONParser
             };
 
             return result;
+        }
+
+        private JSONBool ParseBool()
+        {
+            if (CurrentChar != 't' && CurrentChar != 'f' && CurrentChar != 'n' 
+                && CurrentChar != 'T' && CurrentChar != 'F' && CurrentChar != 'N')
+                throw new FormatException();
+
+            var sb = new StringBuilder();
+
+            while((CurrentChar>='a'&& CurrentChar<='z') || (CurrentChar >= 'A' && CurrentChar <= 'Z'))
+            {
+                sb.Append(CurrentChar);
+                pos++;
+            }
+
+            var pool = sb.ToString().Trim().ToLower();
+
+            if (pool != "true" && pool != "false" && pool != "null")
+                throw new FormatException();
+
+            return new JSONBool(null, pool);
         }
 
         private JSONNumber ParseNumber()
