@@ -33,6 +33,8 @@ namespace JSONParser
 
         private JSONObject ParseWithoutName()
         {
+            SkipWhiteSpace();
+
             if (CurrentChar == JSONUtility.beginArray || CurrentChar == JSONUtility.beginObject)
                 return ParseCollection();
 
@@ -230,8 +232,8 @@ namespace JSONParser
             {
                 if (CurrentChar == '.')
                     dotCount++;
-                else
-                    result.Append(CurrentChar);
+
+                result.Append(CurrentChar);
             }
 
             if (dotCount > 1)

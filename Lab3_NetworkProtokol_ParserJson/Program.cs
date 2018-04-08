@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using JSONParser;
+using System.IO;
 
 namespace Lab3_NetworkProtokol_ParserJson
 {
@@ -19,7 +20,7 @@ namespace Lab3_NetworkProtokol_ParserJson
                 new JSONString("name1", "dataTest"),
                 new JSONObjectCollection("zalupa")
                 {
-                    new JSONNumber("Я ебал твою тёлку", 1488),
+                    new JSONNumber("Я ебал твою тёлку", 1488.765),
                     new JSONString("Я роняю запад", "УУУУУУ"),
                     new JSONBool("Делаю, что я хочу", "null"),
                     new JSONArrayCollection("Это правда")
